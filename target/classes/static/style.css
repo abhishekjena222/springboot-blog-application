@@ -1,0 +1,249 @@
+body{
+    width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: url(https://www.analyticsinsight.net/wp-content/themes/fraction-theme/images/background-texture-5.jpg);
+}
+.wrapper{
+    display: flex;
+    position: relative;
+}
+.wrapper .sidebar{
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background-color: darkgray;
+    padding: 30px 0;
+    border-radius: 3px;
+}
+
+.wrapper .sidebar h2 {
+    text-align: center;
+    color: black;
+}
+
+.wrapper .sidebar ul li{
+    padding: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(225,225,225,0.05);
+}
+.wrapper .sidebar ul li:hover{
+    background:white;
+}
+.wrapper .sidebar ul li:hover a{
+    color:darkgray;
+}
+
+.wrapper .sidebar ul li a{
+    color: black;
+    display: block;
+}
+
+
+.wrapper .sidebar ul li a{
+    color: black;
+    display: block;
+}
+
+.wrapper .main-content{
+    width: 100%;
+    margin-left: 220px;
+
+}
+
+.posts-box-body{
+	padding-top: 10px;
+}
+
+.posts-box{
+    width: 800px;
+    height: 200px;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 20px;
+    background-color: lightgray;
+}
+
+.post-title{
+	margin-bottom: 0px;
+}
+
+.post-author{
+	margin-top: 0px;
+}
+
+.posts-box-content{
+    width: 700px;
+    margin-left: 10px;
+}
+
+.head-nav{
+    display: flex;
+    justify-content: end;
+}
+
+.new-edit-textbox{
+    width: 700px;
+    height: 250px;
+    padding: 10px;
+    background-color: lightgray;
+    border-radius: 4px;
+}
+
+.new-edit-author{
+    width: 700px;
+    height: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    border-radius: 4px;
+}
+
+.new-edit-title{
+    width: 700px;
+    height: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    border-radius: 4px;
+}
+
+a{
+	text-decoration: none;
+}
+
+.comment-box{
+	width: 600px;
+}
+
+.comment-text-body{
+	background-color: lightgray;
+    height: 120px;
+    border-radius: 4px;
+    width: 800px;
+    padding: 10px;
+}
+
+.comment-name-body{
+	margin-bottom: 0px;
+}
+
+.comment-email-body{
+	margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.comment-name-email{
+	width: 300px;
+    height: 30px;	
+}
+
+.button{
+	height: 30px;
+    background-color: lightgray;
+    border-left-width: 1px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-radius: 4px;
+}
+
+.crud-btn{
+	width: 100px;
+}
+
+.text-body{
+	background-color: lightgray;
+    height: 205px;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.edit-delete{
+	justify-content: flex-end;
+    width: 800px;
+    display: flex;
+}
+
+.ank{
+	color: black;
+}
+
+.prev-next{
+	display: flex;
+    justify-content: space-between;
+        margin-top: 30px;
+        margin-bottom: 50px;
+}
+
+.search-result{
+	position: absolute;
+	background: white;
+	padding: 5px;
+	border: 1px solid gray;
+	display: none;
+}
+
+.search-box{
+	width: 300px;
+    padding: 10px;
+}
+
+.tags-display{
+    display: flex;
+    column-gap: 10px;
+}
+
+.tags-display p{
+    background-color: darkgray;
+    height: 20px;
+    padding: 0 10px;
+    border-radius: 2px;
+}
+
+.login-btn{
+    order: double;
+        padding: 5px 10px;
+        border-radius: 6px;
+        color: dodgerblue;
+}
+
+.login-btn:hover{
+    background-color:dodgerblue;
+    color:white;
+}
+
+.logout-btn{
+order: double;
+        padding: 5px 10px;
+        border-radius: 6px;
+        color: #ff0000;
+}
+
+.logout-btn:hover{
+background-color:#ff0000;
+    color:white;
+}
+
+.view-user{
+    padding: 5px 15px;
+        background-color: white;
+        font-size: 17px;
+        border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

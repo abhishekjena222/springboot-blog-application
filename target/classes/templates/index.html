@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Blog Posts</title>
+		<link th:href="@{/style.css}" rel="stylesheet" />
+	</head>
+	
+	<body>
+		<div class="wrapper">
+
+				<div class="sidebar">
+
+						<a href="#"> <h2> Home </h2>  </a>
+
+					<ul>
+
+						<h3 align="center">Sort By:</h3>
+						<li><a href="#" th:href="@{'/page/' + ${currentPage} + '?sortField=publishedAt&sortDir=' + ${reverseSortDir}}"> published date </a></li>
+						<li><a href="#" th:href="@{'/page/' + ${currentPage} + '?sortField=createdAt&sortDir=' + ${reverseSortDir}}"> Created At </a></li>
+						<li><a href="#" th:href="@{'/page/' + ${currentPage} + '?sortField=author&sortDir=' + ${reverseSortDir}}"> Author </a></li>
+						<form action="#">
+							<h3 align="center">Filter By:</h3>
+
+							<li><a href="#"> Author </a></li>
+							<li><a href="#"> Published Date & Time </a></li>
+							<li><a href="#"> Tags </a></li>
+						</form>
+
+					</ul>
+				</div>
+
+			<div class="main-content">
+				<header>
+					<h1>My Blog Application</h1>
+					<div>
+						<div class="head-nav">
+							<div>
+								<form th:action="@{/}" method="post">
+									<input class="search-box" type="text" placeholder="Search" th:name="keyword" />
+									<div class="search-result">
+									</div>
+									<input class="button crud-btn" type="submit" value="search"/>
+									<!--<input class="button crud-btn" type="reset" value="clear"/>-->
+								</form>
+
+							</div>
+							<form th:action="@{/logout}">
+								<span sec:authorize="isAuthenticated()" class="view-user"> &#128373;&#127995; [[${#request.remoteUser}]] </span>
+								<a  sec:authorize="isAuthenticated()" th:href="@{/logout}" class="logout-btn ank" href="">Logout</a>
+								<a  sec:authorize="isAnonymous()" th:href="@{/login}" class="login-btn ank" href="">Login</a>
+								<a  sec:authorize="isAnonymous()" th:href="@{/register}" class="login-btn ank" href=""> SignUp </a><br>
+							</form>
+
+						</div>
+						<div class="head-nav">
+							<button class="button crud-btn"><a class="ank" th:href="@{/newpost}"> New Post </a></button>
+						</div>
+					</div>
+				</header>
+				<div class="posts-box-body">
+					<div class="posts-box" th:each="posts : ${listPosts}" >
+						<h2 class="post-title"><a th:href="@{'/post/' +${posts.id}}" th:text="${posts.title}" style="text-decoration: none">Title</a></h2>
+						<h4 class="post-author" th:text="${posts.author}+',   '+${#temporals.format(posts.createdAt, 'dd/MMM/yyyy  HH:mm')}">Author, createdAt</h4>
+						<p th:text="${posts.excerpt}" class="posts-box-content">body text</p>
+<!--						<p th:text="${posts.tags}"> tags </p>-->
+						<div class="tags-display">
+							<div  th:each="tag : ${posts.tags}">
+								<p th:text="${tag.name}"></p>
+							</div>
+						</div>
+
+<!--						<p th:each="tag : ${posts.tags}"><p th:text="${tag.name}">TagsIn</p>TagsOut</p>-->
+						<br />
+					</div>
+				</div>
+				<div th:if = "${totalPages > 1}">
+					<div>
+						<div class="prev-next">
+							<a  th:if = "${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"><button class="button crud-btn"> &laquo; Prev </button></a>
+							<span th:unless = "${currentPage > 1}"><button class="button crud-btn"> Prev </button></span>
+
+							<div>
+					<span th:each = "i:${#numbers.sequence(1,totalPages)}">
+						<a th:if = "${currentPage != i}" th:href = "@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless = "${currentPage != i}"> [[${i}]]</span> &nbsp; &nbsp;
+					</span>
+							</div>
+
+							<a th:if = "${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"><button class="button crud-btn"> Next &raquo; </button></a>
+							<span th:unless = "${currentPage < totalPages}"><button class="button crud-btn"> Next </button></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+

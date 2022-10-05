@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Comments</title>
+	</head>
+	
+	<body>
+		<h1>All Comments</h1><br>
+		<div>		
+			<div th:each="comments : ${allComments}">
+				<!--<h3 th:text="'Post ID: ' + ${comments.postid}"> Post Id </h3>-->
+				<h4 th:text="'Comment ID: ' + ${comments.id}">Comment Id</h4>
+				<h4 th:text="'Name: '+ ${comments.name}">Name</h4>
+				<h4 th:text="'Email: ' + ${comments.email}">Email</h4>
+				 <p th:text="'comment: ' + ${comments.comment}"> Comment </p>
+				 <p th:text="'Created At: ' + ${comments.createdAt}"> Created At </p>
+				 <P>---------------------------------------</P>
+					<br />
+			</div>
+		</div>
+	</body>
+</html>

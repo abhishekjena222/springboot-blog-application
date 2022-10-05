@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Post</title>
+		<link th:href="@{/style.css}" rel="stylesheet" />
+	</head>
+	
+	<body>
+		<h2><a th:href="@{/}" style="text-decoration: none"> My Blog Application </a></h2>
+		<div align="center">		
+			<div >
+				<h1 th:text="${posts.title}">Title</h1>
+				<h4 th:text="${posts.author}+', '+${#temporals.format(posts.updatedAt, 'dd/MMM/yyyy  HH:mm')}">Author</h4>
+
+					<h2 th:text="${tags.name}">tags</h2>
+
+					<p class="text-body" th:text="${posts.content}">body text</p>
+					 <div class="tags-display">
+						 Tags:<div  th:each="tag : ${posts.tags}">
+							<p th:text="${tag.name}"></p>
+						</div>
+					</div>
+					<br />
+<!--				<span th:if="${#request.remoteUser == posts.author}"> Matched: name  and author</span>-->
+					<button th:if="${#request.remoteUser == posts.author}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/newpost/{id}(id=${posts.id})}" style="text-decoration: none">Edit</a></button>
+					<button th:if="${#request.remoteUser == posts.author}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/deletePost/{id}(id=${posts.id})}" style="text-decoration: none">Delete</a></button>
+
+					<button th:if="${#request.remoteUser == 'aryan'}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/newpost/{id}(id=${posts.id})}" style="text-decoration: none">Edit</a></button>
+					<button th:if="${#request.remoteUser == 'aryan'}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/deletePost/{id}(id=${posts.id})}" style="text-decoration: none">Delete</a></button>
+					<hr>
+					
+			</div>
+			<div align="left">
+				<h2> Leave a Comment </h2>	
+				<form action="#" th:action="@{/savecomment/{id}(id=${posts.id})}" th:object="${comments}" method="post">
+					
+
+						<textarea class="comment-box" cols="45" rows="8" th:field="*{comment}" required></textarea><br><br>
+
+						<div sec:authorize="!isAuthenticated()">
+<!--							<input class="comment-name-email" type="text" placeholder="Name" size="30" th:field="*{name}" required/><br><br>-->
+							<input class="comment-name-email" type="email" placeholder="Email" size="30" th:field="*{email}" th:value="${users.email}" required/><br><br>
+						</div>
+
+					<div sec:authorize="isAuthenticated()">
+<!--						<input class="comment-name-email" type="hidden" placeholder="Name" size="30"  required/><br><br>-->
+						<input class="comment-name-email" type="hidden" placeholder="Email" size="30" th:value="${#request.userPrincipal.principal.email}" name="email" /><br><br>
+					</div>
+
+						
+						<p>
+							<input class="button" type="submit" value=" Post Comment "/><br><br>
+						</p>
+					
+				</form>
+
+				<h2 style="text-decoration: underline"> Comments </h2><br>
+				<div th:each="comment : ${posts.comments}">
+					<h3 class="comment-name-body" th:text="${comment.name}"> Name </h3>
+					<h4 class="comment-email-body" th:text="${comment.email}"> Email </h4>
+					<p class="comment-text-body" th:text="${comment.comment}"> Comment </p>
+					<!--<p th:text="${comment.id}"> Comment ID </p>	-->
+					<div class="edit-delete">
+<!--						<button sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/editComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Edit</a></button>-->
+<!--						<button sec:authorize="hasRole('ROLE_ADMIN')" class="button crud-btn" ><a class="ank" th:href="@{/deleteComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Delete</a></button>-->
+						<button th:if="${#request.remoteUser == posts.author || #request.remoteUser == comment.name }" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/editComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Edit</a></button>
+						<button th:if="${#request.remoteUser == 'aryan'}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/editComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Edit</a></button>
+<!--						<button th:if="${#request.remoteUser == comment.name}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/editComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Edit</a></button>-->
+						<button th:if="${#request.remoteUser == posts.author}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/deleteComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Delete</a></button>
+						<button th:if="${#request.remoteUser == 'aryan'}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/deleteComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Delete</a></button>
+					</div>				
+					
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

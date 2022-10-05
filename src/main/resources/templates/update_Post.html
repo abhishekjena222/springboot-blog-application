@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Update/Edit Post</title>
+		<link th:href="@{/style.css}" rel="stylesheet" />
+	</head>
+	
+	<body>
+		<h2><a th:href="@{'/post/'+${id}}" style="text-decoration: none"> Back to Post </a></h2>
+		<div align="center">
+			<h1>New/Edit Post</h1>
+			<hr>
+			<br>
+			<form action="#" th:action="@{/savepost}" th:object="${posts}" method="post">
+				<input type="hidden" th:field="*{id}" />
+				<input class="new-edit-title" type="text" th:field="*{title}"  size="30" placeholder="Title"/><br><br>
+<!--				<input class="new-edit-author" type="text" th:field="*{author}" size="30" placeholder="Author"/><br><br>-->
+<!--				<input class="new-edit-author" type="text" th:field="*{tags[0].name}" size="30" placeholder="Tags"/><br><br>			-->
+				<input class="new-edit-author" type="text" th:name="tagsStr" size="30" placeholder="Tags"/><br><br>
+				<textarea class="new-edit-textbox" type="" th:field="*{content}" cols="45" rows="8" placeholder="Tell your story.."></textarea><br><br>
+				<button class="button crud-btn" type="submit">Update Post</button><br><br>
+				
+			</form>
+
+		</div>
+	</body>
+</html>
+

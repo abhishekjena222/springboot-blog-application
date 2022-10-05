@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>New Post</title>
+		<link th:href="@{/style.css}" rel="stylesheet" />
+	</head>
+	
+	<body>
+		<h2><a th:href="@{/}" style="text-decoration: none"> My Blog Application </a></h2>
+		<div align="center">
+			<h1>New/Edit Post</h1>
+			<hr>
+			<br>
+			<form action="#" th:action="@{/savepost}" th:object="${posts}" method="post">
+			<div>
+<!--				<input type="hidden" name="id" value="${user.id}" />-->
+				<input class="new-edit-title" type="text" th:field="*{title}"  size="30" placeholder="Title"/><br><br>
+<!--				<input class="new-edit-author" type="text" th:field="*{author}" size="30" placeholder="Author"/><br><br>-->
+<!--				<input type="hidden" th:field="*{user_id}" th:value="${user.id}" />-->
+				<!--<input class="new-edit-author" type="text" th:field="*{excerpt}" size="30" placeholder="Excerpt"/><br><br>-->
+				<!--<input class="new-edit-author" type="text" th:field="*{tags[0].name}" size="30" placeholder="Tags"/><br><br>-->
+				<input class="new-edit-author" type="text" th:name="tagsStr" size="30" placeholder="Tags"/><br><br>
+				<textarea class="new-edit-textbox" type="" th:field="*{content}" cols="45" rows="8" placeholder="Tell your story.."></textarea><br><br>
+				<button class="button crud-btn" type="submit">Publish</button>
+			</div>
+			</form>
+		</div>
+	</body>
+</html>

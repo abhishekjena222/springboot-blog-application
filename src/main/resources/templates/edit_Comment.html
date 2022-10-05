@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Edit Comment</title>
+		<link th:href="@{/style.css}" rel="stylesheet" />
+	</head>
+	
+	<body>
+		<h2><a th:href="@{'/post/' +${id2}}" style="text-decoration: none"> Go back to Post </a></h2>
+		<div align="center">
+			<h1>Edit Comment</h1>
+			<hr>
+			<br>
+			<!--<form action="#"   method="post">-->
+			<form action="#" th:action="@{/savecomment/{id}(id=${id2})}" th:object="${comment}" method="post">
+					
+						
+						<input type="hidden" th:field="*{id}" />
+						<textarea class="comment-box" cols="45" rows="8" th:field="*{comment}" required></textarea><br><br>
+
+<!--						<input class="comment-name-email" placeholder="Name" size="30"  th:field="*{name}" required/><br><br>-->
+						
+						<input class="comment-name-email" type="email" placeholder="Email" size="30" th:field="*{email}" required/><br><br>
+						
+						<p>
+							<input class="button" type="submit" value=" Save Comment "/><br><br>
+						</p>
+					
+				</form>
+			<!--<form action="#" th:action="@{/savecomment/{id}(id=${posts.id})}" th:object="${comments} && ${posts}" method="post">
+					
+						<input type="hidden" th:field="*{id}" />
+						
+						<textarea cols="45" rows="8" th:field="*{comment}" required></textarea><br><br>
+
+						<input placeholder="Name" size="30" th:field="*{name}" required/><br><br>
+						
+						<input type="email" placeholder="Email" size="30" th:field="*{email}" required/><br><br>
+						
+						<p>
+							<input type="submit" value=" Post Comment "/ ><br><br>
+						</p>
+					
+				</form>-->
+		</div>
+	</body>
+</html>
+
+
+

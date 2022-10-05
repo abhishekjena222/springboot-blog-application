@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Comments</title>
+	</head>
+	
+	<body>
+		<h1>All Tags</h1><br>
+		<div>		
+			<div th:each="tag : ${allTags}">
+				<!--<h3 th:text="'Post ID: ' + ${comments.postid}"> Post Id </h3>-->
+				<h4 th:text="'Tag ID: ' + ${tag.id}">Tag Id</h4>
+				<h4 th:text="'Tag Name: '+ ${tag.name}">Tag Name</h4>
+				 <P>---------------------------------------</P>
+					<br />
+			</div>
+		</div>
+	</body>
+</html>
