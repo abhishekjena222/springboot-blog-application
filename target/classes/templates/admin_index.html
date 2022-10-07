@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Admin</title>
+  <link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="wrapper">
+
+  <div class="main-content">
+    <header>
+      <h1>Admin portal</h1>
+    </header>
+    <div class="">
+      <div class="" th:each="luser : ${listUser}" >
+        <p th:text="'UserName: '+${luser.userName}" class="posts-box-content">user name</p>
+        <p th:text="'Role: '+${luser.roles}" class="posts-box-content">user Role</p>
+        <p th:text="'Email: '+${luser.email}" class="posts-box-content">user email</p>
+        <p th:text="'Password: '+${luser.password}" class="posts-box-content">user password</p>
+        <!--						<p th:text="${posts.tags}"> tags </p>-->
+        <button>Edit</button>
+        <button>Delete</button>
+        <p>------------------------------------------------------------------------------</p>
+
+        <!--						<p th:each="tag : ${posts.tags}"><p th:text="${tag.name}">TagsIn</p>TagsOut</p>-->
+        <br />
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
+
+

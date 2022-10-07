@@ -24,11 +24,14 @@
 					</div>
 					<br />
 <!--				<span th:if="${#request.remoteUser == posts.author}"> Matched: name  and author</span>-->
-					<button th:if="${#request.remoteUser == posts.author}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/newpost/{id}(id=${posts.id})}" style="text-decoration: none">Edit</a></button>
-					<button th:if="${#request.remoteUser == posts.author}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/deletePost/{id}(id=${posts.id})}" style="text-decoration: none">Delete</a></button>
+					<button th:if="${#request.remoteUser == posts.author}" sec:authorize="hasRole('ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/newpost/{id}(id=${posts.id})}" style="text-decoration: none">Edit</a></button>
+					<button th:if="${#request.remoteUser == posts.author}" sec:authorize="hasRole('ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/deletePost/{id}(id=${posts.id})}" style="text-decoration: none">Delete</a></button>
 
-					<button th:if="${#request.remoteUser == 'aryan'}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/newpost/{id}(id=${posts.id})}" style="text-decoration: none">Edit</a></button>
-					<button th:if="${#request.remoteUser == 'aryan'}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/deletePost/{id}(id=${posts.id})}" style="text-decoration: none">Delete</a></button>
+
+<!--					<button th:if="${#request.remoteUser == 'aryan'}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/newpost/{id}(id=${posts.id})}" style="text-decoration: none">Edit</a></button>-->
+				<button  sec:authorize="hasRole('ROLE_ADMIN')" class="button crud-btn" ><a class="ank" th:href="@{/newpost/{id}(id=${posts.id})}" style="text-decoration: none">Admin Edit</a></button>
+<!--					<button th:if="${#request.remoteUser == 'aryan'}" sec:authorize="hasAnyRole('ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/deletePost/{id}(id=${posts.id})}" style="text-decoration: none">Delete</a></button>-->
+				<button sec:authorize="hasAnyRole('ROLE_ADMIN')" class="button crud-btn" ><a class="ank" th:href="@{/deletePost/{id}(id=${posts.id})}" style="text-decoration: none">Admin Delete</a></button>
 					<hr>
 					
 			</div>
@@ -65,11 +68,13 @@
 					<div class="edit-delete">
 <!--						<button sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/editComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Edit</a></button>-->
 <!--						<button sec:authorize="hasRole('ROLE_ADMIN')" class="button crud-btn" ><a class="ank" th:href="@{/deleteComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Delete</a></button>-->
-						<button th:if="${#request.remoteUser == posts.author || #request.remoteUser == comment.name }" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/editComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Edit</a></button>
-						<button th:if="${#request.remoteUser == 'aryan'}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/editComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Edit</a></button>
+						<button th:if="${#request.remoteUser == posts.author || #request.remoteUser == comment.name }" sec:authorize="hasRole('ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/editComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Edit</a></button>
+<!--						<button th:if="${#request.remoteUser == 'aryan'}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/editComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Edit</a></button>-->
+						<button sec:authorize="hasRole('ROLE_ADMIN')" class="button crud-btn" ><a class="ank" th:href="@{/editComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Admin Edit</a></button>
 <!--						<button th:if="${#request.remoteUser == comment.name}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/editComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Edit</a></button>-->
-						<button th:if="${#request.remoteUser == posts.author}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/deleteComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Delete</a></button>
-						<button th:if="${#request.remoteUser == 'aryan'}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/deleteComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Delete</a></button>
+						<button th:if="${#request.remoteUser == posts.author}" sec:authorize="hasRole('ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/deleteComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Delete</a></button>
+<!--						<button th:if="${#request.remoteUser == 'aryan'}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="button crud-btn" ><a class="ank" th:href="@{/deleteComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Delete</a></button>-->
+						<button sec:authorize="hasRole('ROLE_ADMIN')" class="button crud-btn" ><a class="ank" th:href="@{/deleteComment/{id1}/{id2}(id2=${posts.id},id1=${comment.id})}">Admin Delete</a></button>
 					</div>				
 					
 					

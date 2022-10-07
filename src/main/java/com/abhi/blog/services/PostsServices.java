@@ -1,6 +1,7 @@
 package com.abhi.blog.services;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.domain.Page;
 
@@ -13,16 +14,24 @@ public interface PostsServices {
 	void deletePostsById(long id);
 	Page<Posts> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 
-
+	Set<String> getAllAuthors();
 
 	List<Posts> getAllPostsByKey(String keyword);
 
+//	List<Posts> getAllPosts(String author, String tagss);
+
+//	List<Posts> getAllPosts(String author, List<String> tagss);
+
+//	List<Posts> getAllPosts(String[] author, String[] tagss,int pageNo, int pageSize);
+
+	List<Posts> getAllPostsByTags(String[] tagss1);
+
+	List<Posts> getAllPostsByAuthor(String[] author1);
+
+	Page<Posts> findPaginatedWithFilter(int pageNo, int pageSize, String[] sortField, String[] sortDirection);
 
 
+	List<Posts> getAllPosts(String[] author1, String[] tagss1);
 
-//	Page<Posts> findPaginated(int pageNo, int pageSize);
-
-//	List<Posts> getAllWithSort(String field, String direction);
-
-//	List<Posts> getAllWithSort(String field);
+	List<Posts> getAllFalsePosts(boolean b);
 }

@@ -2,6 +2,7 @@ package com.abhi.blog.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -66,12 +67,30 @@ public class PostsServicesImpl implements PostsServices{
 		return this.postsRepositories.findAll(pageable);
 	}
 
-//	@Override
-//	public Page<Posts> findPaginated(int pageNo, int pageSize, String sortField, String keyword) {
-//		List<Posts> posts = postsRepositories.findAllByKey(keyword)
-//		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, posts);
-//		return this.postsRepositories.findAll(pageable);
-//	}
+	@Override
+	public Page<Posts> findPaginatedWithFilter(int pageNo, int pageSize, String[] author, String[] tagss) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return postsRepositories.findByAuthorInAndTags_NameIn(author,tagss,pageable);
+	}
+
+	@Override
+	public List<Posts> getAllPosts(String[] author1, String[] tagss1) {
+		return postsRepositories.findByAuthorInAndTags_NameIn(author1,tagss1);
+	}
+
+	@Override
+	public List<Posts> getAllFalsePosts(boolean b) {
+		return postsRepositories.findByIsPublished(b);
+	}
+
+	@Override
+	public Set<String> getAllAuthors() {
+		System.out.println("------------------------------------------------------1--------------------------");
+		System.out.println(postsRepositories.findAllAuthors());
+		System.out.println("------------------------------------------------------2--------------------------");
+		return postsRepositories.findAllAuthors();
+	}
+
 
 	@Override
 	public List<Posts> getAllPostsByKey(String keyword) {
@@ -81,23 +100,17 @@ public class PostsServicesImpl implements PostsServices{
 
 
 
+	@Override
+	public List<Posts> getAllPostsByTags(String[] tagss1) {
+		return postsRepositories.findByTags_NameIn(tagss1);
+	}
 
-//	@Override
-//	public Page<Posts> findPaginated(int pageNo, int pageSize) {
-//		 List<Posts> posts = postsRepositories.findAllByKey(keyword);
-//		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-//		return this.postsRepositories.findAll(pageable);
-//	}
+	@Override
+	public List<Posts> getAllPostsByAuthor(String[] author1) {
+		return postsRepositories.findByAuthorIn(author1);
+	}
 
-//	@Override
-//	public List<Posts> getAllWithSort(String field, String direction) {
-//		return null;
-//	}
 
-//	@Override
-//	public List<Posts> getAllWithSort(String field) {
-//		return postsRepositories.findAll(Sort.by(field));
-//	}
 
 
 }

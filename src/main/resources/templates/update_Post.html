@@ -19,6 +19,11 @@
 <!--				<input class="new-edit-author" type="text" th:field="*{tags[0].name}" size="30" placeholder="Tags"/><br><br>			-->
 				<input class="new-edit-author" type="text" th:name="tagsStr" size="30" placeholder="Tags"/><br><br>
 				<textarea class="new-edit-textbox" type="" th:field="*{content}" cols="45" rows="8" placeholder="Tell your story.."></textarea><br><br>
+				<label class="switch">
+					<input th:value="true" th:name="ispublished" type="checkbox">
+					<span class="slider round"></span><br>
+				</label>
+				<p>Turn on to Publish</p><br>
 				<button class="button crud-btn" type="submit">Update Post</button><br><br>
 				
 			</form>
